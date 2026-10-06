@@ -4,6 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MnbCurrencyRates from './MnbCurrencyRates'
 
+/**
+ * TODO - refactor App to class component
+ * @returns 
+ */
 function App() {
   const [count, setCount] = useState(0)
 
@@ -17,7 +21,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>MNB árfolyamok</h1>
+      <h1>MNB árfolyamok (TODO date)</h1>
       <div className="card">
         <MnbCurrencyRates />
         <p>
