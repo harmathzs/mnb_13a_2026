@@ -9,11 +9,18 @@ export default class MnbCurrencyRates extends React.Component {
     }
 
     async componentDidMount() {
-        // Call GET /api/rates HTTP REST API endpoint
-        const res = await fetch('/api/rates')
-        const json = await res.json()
-        console.log('MnbCurrencyRates json', json)
-        // TODO - set state from response
+        try {
+            // Call GET /api/rates HTTP REST API endpoint
+            const res = await fetch('/api/rates')
+            const json = await res.json()
+            console.log('MnbCurrencyRates json', json)
+            const {date = new Date(Date.now()), rates = []} = json
+            // Set state from response
+            this.setState({date, rates, error: null})
+        } catch (error) {
+            console.warn(error)
+            this.setState({error, date: '', rates: []})
+        }
     }
 
     render() {
@@ -33,7 +40,7 @@ export default class MnbCurrencyRates extends React.Component {
                                 <th>Árfolyam (HUF)</th>
                             </tr>
                         </thead>
-                        <tbody>TODO - fill table</tbody>
+                        <tbody>{JSON.stringify(rates)}</tbody>
                     </table>
                 </div>
 
